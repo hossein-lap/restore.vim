@@ -73,27 +73,12 @@ let g:ignore_paths = [
 
 
 function! SessionSave()
-  " let l:dir = expand('%:p:h')
-  " let l:session_dir = l:dir . '/.session.vim'
-  " if !isdirectory(l:session_dir)
-  "   call mkdir(l:session_dir, 'p')
-  " endif
-  " let l:session_file = l:dir . '/.session.vim/' . expand('%:t') . '.vim'
-  " execute 'mksession! ' . l:session_file
-  
-  if !&modifiable || &readonly
-      return
-  endif
-  let l:filepath = expand('%:p')
-  let l:dir = fnamemodify(l:filepath, ':h')
-  let l:session_dir = dir . '/.vim-session'
-  let l:session_file = session_dir . '/' . fnamemodify(l:filepath, ':t') . '.vim'
+  let l:dir = expand('%:p:h')
+  let l:session_dir = l:dir . '/.session.vim'
   if !isdirectory(l:session_dir)
-      call mkdir(l:session_dir, 'p')
+    call mkdir(l:session_dir, 'p')
   endif
-  if !writable(l:dir) || !filereadable(l:filepath)
-      return
-  endif
+  let l:session_file = l:dir . '/.session.vim/' . expand('%:t') . '.vim'
   execute 'mksession! ' . l:session_file
 endfunction
 
