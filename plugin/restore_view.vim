@@ -60,3 +60,15 @@ augroup AutoView
     autocmd BufWritePre,BufWinLeave ?* if MakeViewCheck() | silent! mkview | endif
     autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
 augroup END
+
+" generate session.vim
+function! SessionSave()
+    let l:filepath = expand('%:p:h')
+    let l:session_file = l:filepath . '/session.vim'
+    if !&readonly
+        execute 'mksession! ' . l:session_file
+    endif
+endfunction
+
+command! SaveSession call SessionSave()
+autocmd BufWritePost * SaveSession
