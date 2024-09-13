@@ -61,7 +61,18 @@ augroup AutoView
     autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
 augroup END
 
+
+
 " generate session.vim
+
+let g:ignore_paths = [
+    \ '~/.gnupg/',
+    \ '~/.ssh/',
+    \ '~/.local/share/',
+    \ '/tmp',
+    \ ]
+
+
 function! SessionSave()
   " let l:dir = expand('%:p:h')
   " let l:session_dir = l:dir . '/.session.vim'
@@ -88,4 +99,4 @@ function! SessionSave()
 endfunction
 
 command! SaveSession call SessionSave()
-autocmd BufWritePre,BufWinLeave * SaveSession
+autocmd BufWritePost,BufWinLeave * SaveSession
