@@ -69,7 +69,6 @@ let g:ignore_paths = [
     \ '~/.gnupg/',
     \ '~/.ssh/',
     \ '~/.local/share/',
-    \ '/tmp',
     \ ]
 
 
@@ -99,4 +98,4 @@ function! SessionSave()
 endfunction
 
 command! SaveSession call SessionSave()
-autocmd BufWritePost,BufWinLeave * SaveSession
+autocmd BufWritePost * SaveSession
