@@ -13,11 +13,11 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +58 ~/personal/restore.vim/plugin/restore_view.vim
+badd +1 ~/personal/restore.vim/plugin/.session.vim/restore_view.vim.vim
 argglobal
 %argdel
 $argadd plugin/minisnip.vim
-edit ~/personal/restore.vim/plugin/restore_view.vim
+edit ~/personal/restore.vim/plugin/.session.vim/restore_view.vim.vim
 argglobal
 setlocal fdm=marker
 setlocal fde=0
@@ -27,13 +27,11 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=99
 setlocal fen
-28
-normal! zo
-let s:l = 58 - ((48 * winheight(0) + 24) / 49)
+let s:l = 1 - ((0 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 58
+keepjumps 1
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
@@ -48,6 +46,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
