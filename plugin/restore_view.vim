@@ -61,6 +61,7 @@ let g:ignore_paths = [
     \ '~/.ssh/',
     \ '~/.local/share/',
     \ '/etc/',
+    \ '/var/',
     \ ]
 
 function! SessionSave()
