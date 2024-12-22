@@ -53,6 +53,7 @@ function! MakeViewCheck()
 
     return 1
 endfunction
+command! SaveSession call SessionSave()
 " }}}
 
 " generate session.vim {{{
@@ -80,5 +81,5 @@ augroup AutoView
     " Autosave & Load Views.
     autocmd BufWritePre,BufWinLeave ?* if MakeViewCheck() | silent! mkview | endif
     autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
-    autocmd BufWinEnter ?* SaveSession()
+    autocmd BufWinEnter ?* silent! SaveSession
 augroup END
