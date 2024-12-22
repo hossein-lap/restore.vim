@@ -60,6 +60,7 @@ let g:ignore_paths = [
     \ '~/.gnupg/',
     \ '~/.ssh/',
     \ '~/.local/share/',
+    \ '/etc/',
     \ ]
 
 function! SessionSave()
@@ -81,5 +82,5 @@ augroup AutoView
     " Autosave & Load Views.
     autocmd BufWritePre,BufWinLeave ?* if MakeViewCheck() | silent! mkview | endif
     autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
-    autocmd BufWinEnter * SaveSession
+    autocmd BufWrite * SaveSession
 augroup END
