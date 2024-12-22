@@ -81,5 +81,5 @@ augroup AutoView
     " Autosave & Load Views.
     autocmd BufWritePre,BufWinLeave ?* if MakeViewCheck() | silent! mkview | endif
     autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
-    autocmd BufWinEnter ?* SaveSession
+    autocmd BufWinEnter * SaveSession
 augroup END
