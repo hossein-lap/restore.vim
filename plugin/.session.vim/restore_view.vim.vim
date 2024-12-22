@@ -13,14 +13,12 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 ~/personal/restore.vim/plugin/restore_view.vim
-badd +8 plugin/minisnip.vim
+badd +75 ~/personal/restore.vim/plugin/restore_view.vim
 argglobal
 %argdel
 $argadd plugin/minisnip.vim
 edit ~/personal/restore.vim/plugin/restore_view.vim
 argglobal
-balt plugin/minisnip.vim
 setlocal fdm=marker
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -29,12 +27,16 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=99
 setlocal fen
-let s:l = 75 - ((8 * winheight(0) + 24) / 49)
+28
+normal! zo
+58
+normal! zo
+let s:l = 56 - ((38 * winheight(0) + 24) / 49)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 75
-normal! 05|
+keepjumps 56
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

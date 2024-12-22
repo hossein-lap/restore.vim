@@ -25,7 +25,7 @@
 "
 "       Most of code is from wiki.
 
-
+" view {{{
 if exists("g:loaded_restore_view")
     finish
 endif
@@ -53,24 +53,14 @@ function! MakeViewCheck()
 
     return 1
 endfunction
+" }}}
 
-augroup AutoView
-    autocmd!
-    " Autosave & Load Views.
-    autocmd BufWritePre,BufWinLeave ?* if MakeViewCheck() | silent! mkview | endif
-    autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
-augroup END
-
-
-
-" generate session.vim
-
+" generate session.vim {{{
 let g:ignore_paths = [
     \ '~/.gnupg/',
     \ '~/.ssh/',
     \ '~/.local/share/',
     \ ]
-
 
 function! SessionSave()
     if !&readonly
@@ -83,6 +73,12 @@ function! SessionSave()
         execute 'mksession! ' . l:session_file
     endif
 endfunction
+" }}}
 
-command! SaveSession call SessionSave()
-autocmd BufWritePost * SaveSession
+augroup AutoView
+    autocmd!
+    " Autosave & Load Views.
+    autocmd BufWritePre,BufWinLeave ?* if MakeViewCheck() | silent! mkview | endif
+    autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
+    autocmd BufWinEnter ?* SaveSession()
+augroup END
