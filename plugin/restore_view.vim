@@ -55,29 +55,6 @@ function! MakeViewCheck()
 endfunction
 " }}}
 
-" generate session.vim {{{
-let g:ignore_paths = [
-    \ '~/.gnupg/',
-    \ '~/.ssh/',
-    \ '~/.local/share/',
-    \ '/etc/',
-    \ '/var/',
-    \ ]
-
-function! SessionSave()
-    if !&readonly
-        let l:dir = expand('%:p:h')
-        let l:session_dir = l:dir . '/.session.vim'
-        if !isdirectory(l:session_dir)
-            call mkdir(l:session_dir, 'p')
-        endif
-        let l:session_file = l:dir . '/.session.vim/' . expand('%:t') . '.vim'
-        execute 'mksession! ' . l:session_file
-    endif
-endfunction
-command! SaveSession call SessionSave()
-" }}}
-
 augroup AutoView
     autocmd!
     " Autosave & Load Views.
