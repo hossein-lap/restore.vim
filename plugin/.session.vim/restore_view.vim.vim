@@ -13,7 +13,8 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +0 restore_view.vim
+badd +1 /etc/resolv.conf
+badd +1 restore_view.vim
 argglobal
 %argdel
 $argadd restore_view.vim
@@ -29,12 +30,12 @@ setlocal fdn=99
 setlocal fen
 58
 normal! zo
-let s:l = 84 - ((74 * winheight(0) + 24) / 48)
+let s:l = 85 - ((74 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 84
-normal! 0
+keepjumps 85
+normal! 023|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
