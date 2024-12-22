@@ -55,31 +55,31 @@ function! MakeViewCheck()
 endfunction
 " }}}
 
-" generate session.vim {{{
-let g:ignore_paths = [
-    \ '~/.gnupg/',
-    \ '~/.ssh/',
-    \ '~/.local/share/',
-    \ ]
-
-function! SessionSave()
-    if !&readonly
-        let l:dir = expand('%:p:h')
-        let l:session_dir = l:dir . '/.session.vim'
-        if !isdirectory(l:session_dir)
-            call mkdir(l:session_dir, 'p')
-        endif
-        let l:session_file = l:dir . '/.session.vim/' . expand('%:t') . '.vim'
-        execute 'mksession! ' . l:session_file
-    endif
-endfunction
-command! SaveSession call SessionSave()
-" }}}
+" " generate session.vim {{{
+" let g:ignore_paths = [
+"     \ '~/.gnupg/',
+"     \ '~/.ssh/',
+"     \ '~/.local/share/',
+"     \ ]
+"
+" function! SessionSave()
+"     if !&readonly
+"         let l:dir = expand('%:p:h')
+"         let l:session_dir = l:dir . '/.session.vim'
+"         if !isdirectory(l:session_dir)
+"             call mkdir(l:session_dir, 'p')
+"         endif
+"         let l:session_file = l:dir . '/.session.vim/' . expand('%:t') . '.vim'
+"         execute 'mksession! ' . l:session_file
+"     endif
+" endfunction
+" command! SaveSession call SessionSave()
+" " }}}
 
 augroup AutoView
     autocmd!
     " Autosave & Load Views.
     autocmd BufWritePre,BufWinLeave ?* if MakeViewCheck() | silent! mkview | endif
     autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
-    autocmd BufWinEnter * SaveSession
+    " autocmd BufWinEnter * SaveSession
 augroup END
